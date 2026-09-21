@@ -1,0 +1,913 @@
+v0.9.1.1
+~ fixed a bug that caused extra padding to not work when using manual digest
+
+v0.9.1
+~ Old saves MIGHT be compatible as save script hasn't updated, but level shapes have been updated, so old saves may cause soft lock
++ added a DNA point value to minimech pilots for when they are first KO'd or eaten
+~ tweaked one of the new areas of level 1 near the companion to make it not so easy to fully bypass the majority of it
+~ tweaked a few areas and added a few platforms in level 3 to ease difficulty, particularly where wall jumping was involved
+~ scattered a few small exit signs around level 3 to help guide in the GENERAL direction of the level exit
+~ reduced time it takes for stamina to start regeneration after jumping (with jump stamina cost enabled) by 25%
+~ alerted enemies no longer immediately alert other enemies they come in contact with, but instead raise their awareness to just below alert levels
+~ lowered the awareness gain of enemies that have heard the player but are seperated by a wall/platform by an additional 25%
+~ tweaked enemy positioning and removed a dasher from the room with the purple control pannel in level 1 
+~ narrowed the wall jumping gap required to access the blue control pannel on level 1 
+~ tweaked several variables for the advanced lighting system to hopefully improve performance
+~ fixed a bug where the companion could take hits from wall missiles while they were stored away
+~ fixed an issue with a missing platform collision in level 1
+~ fixed an issue where air attacks could be used to skip heavy landing state
+~ fixed a bug that caused minimech pilots to not alert enemies they ran past
+~ fixed a potential crash loop in rare cases when missile mechs were destroyed
+~ fixed a bug that caused crashes in specific circumstances due to a missing declaration
+~ fixed a bug that allowed the player to gain benefits from the extra padding perk by repeatedly digesting the companion
+~ fixed a minor bug that caused bones/remains to despawn early
+
+
+v0.9.0
+
+Major changes:
+~ SAVE SCRIPT HAS BEEN UPDATED - old saves will be incompatible (Enable debugger with f3 and press "P" to regain DNA points)
++ Added the slime companion
+	+ Companion must be found first in order to use - they are hidden somewhere in level 1
+	+ Companion has 4 different forms available that can be selected from the companion settings menu in the pause menu
+	+ These forms are functionally mostly identical right now but will recive unique changes later
+	+ Companion can have other functions customized from companion menu, including temporairly dismissing them
+	+ enemies can see and hear the companion and will investigate their area, but will not enter chase without detecting the player
+	+ Companion will follow the player and chase down and swallow minimech pilots
+	+ Companion will also push back enemies who are pursuing the player
+	+ Companion slowly regenerates health and can be eaten for extra health
+	+ minimech pilots eaten will add to the health restored by the companion
+
++ Added level 3
+	~ Level 3 is VERY LARGE. Level maps will happen at some point, but will take time
+	~ Level 3 is VERY HARD compared to previous levels, but should still be completable without ever being detected if skilled enough
+	~ Level 3's difficulty spike is intentional in order to "stress test" the game's mechanics and how well they work at higher difficulties. Please leave feedback!
+
++ Updated and expanded level 1 and level 2
++ Added several new background sprites and updated a few visuals of all levels
++ added a "look around" function for players to view beyond the normal camera bounds (hold V to use)
++ Added traversable doors
++ Added multiple ranks of keycards for accessing locked doors
++ Specific enemies will now carry keycards (these enemies will have a "sparkle" like health and ammo pickups when they're idle and drop their cards when KO'd)
+~ Swallowed items (keycards) are now always regurgitated any time anything is regurgitated
++ Overhauled status icon and added several new animations
++ added new expressions to Mia's idle animations reflective of her current health
++ added a "draining" animation to status icon boarder after completing digestion
++ Added a brief windup to jumping when carrying prey that scales with number of prey
++ Added a landing animation
++ Added a heavy landing state/animation for when falling from greater heights
++ replaced landing sounds and added new sfx for landing while full
+~ sound emission from landing is now variable based on fall speed and preycount
++ "Soft" landings can now be performed by holding down when landing (if not falling from too high) - costs stamina, but reduces sound made
++ Jumping and melee now cost stamina - both can be done with no stamina, but with diminished effect - can be disabled in game settings
++ stamina regenerates faster while crouching/crawling and slower while wall sliding
++ performed serious system optimizations - performance should be on average at least 4 or 5 times as good as before
++ Sound effects now properly fade out with distance
+~ Reformatted settings menu with several new options
++ created a new system for managing bones/remains
+~ digested enemies now leave more bones and always leave a skull (if bones are enabled)
++ added option for extra bone remains with many additional sprites
++ enemies with different skull types (like the serpent) now leave behind appropriate skulls when digested
++ Enemies now leave remains when digested in the form of their armor/clothing, which behaves similarly to bone remains
++ Bones/remains now persist for much longer and act as "evidence" for enemies to find, causing them to search the area
++ Added burp bubbles to Gaseous Eruption
++ added 200+ new sounds to the asset library for both current and future use
++ Updated ReadMe
+
+
+Minor Changes:
++ added ambiant sfx
++ added sfx for braking/sliding
++ added dust particles for braking
++ added player footstep sfx
++ added crouching animation for Mia when empty
++ added standing animations
++ added ability to disable character portrait in the status icon in order to only see the stomach/internals
++ added an option in the pause menu to toggle player personal light
++ added a new music track for a certain location
++ created a more robust music manager for handling multiple tracks
++ added explosion light to missile mechs
++ added an extra gene editor to level 3
+~ added an additional purple barrier control pannel to level 2 to allow player to move backwards through levels
++ added option to disable struggle contests in game settings
++ added an orange control terminal to level 1 to allow heading back to starting area
++ player can now jump away off of ledges they are currently grabbing
++ game settings are now saved and will be applied on loading a save
+~ enemy FOV now updates correctly with any head turning that happens in animations
+~ executives now have a maximum number of backup bodyguards they can call in (it's a lot)
+~ missile mech missiles will now only home on players within a certain distance
+~ slightly randomized the self destruct timer on missile mech missiles
+~ missile mechs should now better keep track of the player if they remain within range of missiles
+~ player can now drop through platforms during several states that otherwise lock them in place (such as manual burps and finishing digestion)
+~ Manual regurgitation can now be used during indigestion and struggle contests to end the state early
+~ regurgitating prey while a struggle contest is building up will also cancel the buildup
+~ Enemies who are not currently moving will now slightly push each other away so they don't end up so stacked on top of each other
+~ The primary interact key has been changed from "Z" to "E" by player request
+~ "E" can now be used for selections within the Gene Editor menu
+~ adjusted speed threshold for wrecking ball perk so it will trigger more reliably 
+~ hitting an enemy with the wrecking ball perk will now slow the player's current momentum
+~ stun gun shots from far away will no longer instantly put an enemy in pursuit, but it will still raise them to just under max awareness and they will know where the shot came from
+~ wall cannon missiles now start slow and gain speed over time
+~ gaseous eruption can now be used with half/post digestion belly size
++ added a toggle setting to disable player dealing passive digestion damage
++ added bones to save script
++ camera zoom level is now saved
+~ set a limit on the maximum number of bones that can exist outside of Mia's stomach at once for extreme cases (current limit is 1,000)
+- reduced max ammo to 100 (will be upgradable later)
+~ crouching now reduces momentum faster
+~ crouching with 3 prey can now be done while still in motion so long as you aren't holding movement keys
+~ lowered light level in certain parts of level 1
+~ tweaked and refined color values and light ranges for several other lights
+~ slightly reduced range and intensity of entity personal lights
+~ gene editor menu will not open if the player is not on the ground now
+~ when gun aiming is disabled the shot will fire upon pressing space instead of releasing space
+~ healing from swallowing mech pilots or health pickups now happens as soon as they are swallowed
+~ stamina bar red flash now stops early if player successfully performs a different action that also costs stamina
+~ dashers will no longer try to dash into player if they're blocked by a laser barrier
+~ player melee attacks should now be blocked by walls and laser barriers
+~ created new scripts
++ crouch kicks are now chargable with the perk Power Strike
++ stun gun shots will now affect minimech pilots
+~ wall jumping is now less effective while carrying more prey
+~ stomach deals passive digestion damage twice as fast at half the damage now to smooth out damage dealing
++ added a setting to disable gun aiming
++ added a particle limiter to missiles to avoid lag spikes
+~ missiles now automatically detonate after a while of following the player
++ added missing fullhalf crouch animation and crouch struggle animation
+~ indigestion won't increase during burps anymore
+~ smoothed edges of spotlight in simple lighting system
+~ horizontal laser barriers no longer instantly destroy enemies
+~ adjusted enemy AI so they will give up jumping sooner as long as they can't see or hear the player
+~ increased how fast the sound emission bubble shrinks when the player stops making noise
+~ patrolling enemies will now finish idle animations before resuming patrol
+~ lowered the cost of augment strength and halved the bonus damage
+~ slightly reduced the odds of missile mechs spawning from executives when they call for backup
+- nerfed damage of airborn attacks to 0.75 each, reduced knockback and hitstun duration
+- airborn kicks no longer hit multiple enemies
+~ indigestion no longer interrupts manual burping
+~ adjusted status icon prey counter to clear up confusion at half belly sizes
+~ surprised sound will no longer play for enemies far offscreen (such as when hit with a stray stungun shot)
+~ Enemies stunned by the stun gun now immediately stop tracking the player's location unless the player is extremely close
+~ disabled saving while airborn and hanging from ledges to avoid bugs and exploits
+~ UI now automatically hides while in Gene editor menu at smallest resolution to avoid blocking the view
+~ disabled pausing during level transitions to avoid errors
+~ balanced volume of some of the passive digestion sounds
+~ tweaked which frame slosh step sfx plays on 
+~ slightly increased slosh step sfx while sprinting
+~ slightly sped up full 1 manual burp
+~ adjusted sound settings to give burp sfx slightly higher priority
+~ tweaked manual digest end animations to better sync with burps
+~ reduced volume of wall cannons
+
+
+Bug Fixes:
+~ fixed a bug that caused enemies to face the wrong direction on game load
+~ fixed a rare bug that could cause saves files to fail to load in very specific circumstances
+~ fixed a visual bug that happened when loading a save from the main menu
+~ fixed an audio bug where the power down sound would play multiple times when shutting off laser barriers
+~ fixed a bug that caused bones to generate in Mia's stomach on game load
+~ fixed a bug that caused wrecking ball perk to trigger while airborne
+~ fixed an animation bug with gaseous eruption when at 0 solid prey with a half size belly
+~ fixed a bug that caused sound emission to track improperly with gaseous eruption at half size belly
+~ fixed a bug that caused enemies to constantly change direction while they were actively hearing the player but had not detected them at close x range
+~ fixed a minor error where minimechs didn't track vision from the correct location
+~ fixed a bug that allowed stamina to regenerate during ground and air attacks
+~ wall missile explosions should no longer cause volume issues when multiple detonate at once
+~ drain vitality perk now functions with manual digestion
+~ fixed a bug that sometimes caused a single frame animation error when trying to crouch
+~ fixed a bug that caused crouch slosh animation to play at the wrong time
+~ fixed an error where the enemy a bodyguard was supposed to guard wasn't getting saved properly
+~ fixed a bug that allowed the player to skip the upgrade animation at the gene editor
+~ exiting a shop menu should no longer also trigger an additional action if that key was shared (like with the enter key)
+~ minimech pilot FoV now correctly flips with their idle animation when they look behind them
+~ fixed a bug where enemies could sometimes still hit player through walls
+~ fixed a few bugs with the status icon that would happen after taking a hit during a struggle contest
+~ fixed a bug where entities could be eaten through walls and laser barriers
+~ fixed a bug that could cause indigestion levels to constantly increase at struggle contest levels
+~ fixed a bug that caused a soft lock from struggle contests happening during level transition
+~ fixed a bug where pilots HP wasn't saved
+~ added a few crash preventatives for rare case scenarios relating to edge grabbing
+~ fixed a bug that allowed ledges to be immediately regrabbed when dropping off them
+~ fixed a bug with bones that could cause an error when loading the game
+~ fixed a bug that caused the "absorb ready" sound effect to play early when eating a KO'd enemy
+~ fixed a long standing bug that broke light sources when changing zoom/resolution so they no longer have to be switched off
+~ fixed a bug that stored a jump thru melee attacks
+~ fixed a bug that caused struggle contests to be instantly won if eating an entity when they began
+~ fixed a rare bug that could cause the game to crash by forcing a level transition while loading a save file
+~ fixed a bug that caused regurgitated bones to not launch as far
+~ fixed a bug that caused extra health to be healed when finishing manual digest
+~ fixed a bug that caused extra health to be healed when finishing auto digest
+~ fixed an issue where sonar ping sfx could layer and get excessively loud
+~ fixed a bug that caused the serpent to create multiple hitboxes when attacking
+~ fixed a bug that caused the dasher's hitbox to appear incorrectly on the first frame of its attack
+~ fixed an issue with full half crouch animation
+~ fixed a rare bug that caused stamina to display odd values
+~ fixed shine on collectables not generating light
+~ fixed a bug that caused the drain vitality perk to not scale with enhanced acid perk damage
+~ fixed a rare issue that caused the pause menu to crash the game
+~ fixed a bug that could allow Executives to spawn bodyguards inside walls
+~ fixed a bug that caused more sound than normal to emit from some burps
+~ fixed a bug that caused ambient sounds to continue playing after a game was loaded
+~ fixed missing full half crouch slosh sfx
+~ fixed an issue where fullhalf manual burp animation had too many frames
+~ fixed issues with resolution settings changing when moving between main menu and back into game
+~ fixed an issue where maximum level dexterity could break speed limits with air attacks
+~ fixed a bug that caused the scientist and executives to use the collision boxes of the sentry
+~ fixed a bug that caused the correct shoot end animations to not be used after firing a shot while in the air and then landing
+~ fixed a bug where gaseous eruption wouldn't work properly at the half size belly
+~ fixed several issues with how stun gun shots interacted with ramps for future functionality
+~ fixed several bugs with Enhanced Acids and Advanced Enzyme perks that caused healing from digesting prey to not be added
+~ fixed an issue with the executive not showing the correct state when calling backup
+~ fixed debugger issue with determining player state during air and ground attacks
+~ fixed a bug that caused executives to spawn new bodyguards on game load while KO'd and/or eaten
+~ fixed a bug that caused scientists to occasionally vanish from the player's stomach between levels
+~ fixed a bug that caused the absorbready sfx to play and struggle contests to be interrupted by manual digestion
+~ fixed a bug that kept scientists from taking digestive damage when the player was eaten by a serpent while eating a scientist
+~ fixed a bug that caused the executive to spawn new bodyguards in Mia's stomach when the game was loaded
+~ fixed a bug that allowed enemies to hit the player through walls
+~ fixed an issue with a ledge grab in level 1
+~ fixed a bug that caused the serpent to skip the exhaust phase
+~ fixed a frame perfect bug that caused an animation error when eating an enemy at the exact same time as getting hit
+~ fixed an animation bug that caused full crouch animations to play at improper times
+~ fixed a bug that caused augment strength perk to not add bonus damage to the air and ground attacks
+
+
+
+
+v0.8.5
+Major changes:
+~ SAVE SCRIPT UPDATED - old saves will likely be incompatible - use debugger to help regain lost DNA points (F3 -> "P")
++ added executive enemies, capable of calling in backup when threatened
++ added bodyguard state to enemies for use cases like guarding the executive enemy
++ added new "Scientist" enemy worth extra DNA points, animated by Volt Jolt
++ added several new player animations for carrying "half" sized prey (like the scientist)
++ Added 8 directional shooting - hold space to enter shooting stance, use movement keys to aim, release space to fire
++ Added ledge grabbing/climbing
+~ updated all of the sentry animations, courtesy of Volt Jolt
+~ updated all of the dasher animations, courtesy of Volt Jolt again
++ added 2 new airborn melee attacks
++ added a crouch melee attack
++ added wall jumping
+
+Minor changes:
++ added a fleeing state to most enemies for future use with enemy interaction
+~ tweaked fullhalf airborn animations to be more consistent
+~ revamped vore system to work with half sized prey hopefully without breaking everything else
++ added sloshing sfx to run and sprint animations with variable volume for fullness
++ added a few missing dasher animations
+~ updated search state so that enemies who have only just heard the player pause for a moment before investigating
++ Expanded beta room
++ added multiple pages of debugger, accessed by holding shift while pressing F3
+~ tweaked player sprinting animations to be more consistent with Mia's height
+
+Bug fixes:
+~ fixed a bug that caused audio issues with the mini pilots when hitting laser barriers 
+~ fixed a bug that caused sound errors during manual digest
+~ fixed a bug that caused scientists to jump endlessly at walls and ledges while fleeing the player
+~ fixed a bug that caused health values to not be saved
+~ fixed a bug that caused the wrong swallow animation to be played for the serpent
+~ fixed a bug that caused the surprise state to spam when eaten at the same time as being noticed
+~ fixed a bug that caused the game to crash when eaten at the exact same time another serpent is surprised by Mia
+~ fixed a rare edge case bug with sentry attacks
+~ fixed a bug that allowed alien serpents to hit/grab Mia through solid walls and laser barriers
+~ fixed a bug that caused missile mech health values to not be saved
+~ fixed a bug that caused executives to spawn additional bodyguards on game load
+~ fixed a bug that allowed the player to climb outside of level 1
+~ fixed some desynchronized sounds with manual digestion
+~ fixed a few sprite inconsistencies with some of Mia's abilities
+~ fixed a rare edge case bug with ledge grabbing
+~ fixed a wall that used a depreciated object and wouldn't allow wall sliding
+~ fixed a crash that would happen upon pressing numpad 7 with debugger enabled
+~ fixed a bug that prevented enemies from being regurgitated when hit during indigestion and struggle contests
+~ fixed an audio bug that caused hit sounds to play extra loud when hitting multiple enemies
+~ fixed a collision bug where dashing against a wall while in a platform without touching any keys would remove the player's collision box
+~ fixed minor inconsistency with sprint sprites
+~ fixed a bug where serpent HP was not saved
+~ fixed a bug where loading saves with KO'd enemies would grant extra DNA points
+~ fixed a stray pixel on the toss n gulp full1 animation
+~ fixed a bug where burped up bones wouldn't notify enemies that saw them of the player's location
+
+
+v0.8.0
+Major changes:
+~ SAVES FROM PREVIOUS VERSIONS WILL NOT WORK. IT WILL TRY TO LOAD OLD ENEMIES USING OLD SYSTEMS AND WILL CRASH THE GAME.
++ Revamped ALL the player sprites at the cost of my soul, again :')
+	~ another thank you to AbsoluteVL for assisting in finalizing the new design!
++ added a few other minor new player animations
++ Created a simple and advanced lighting system  - simple is enabled by default due to advanced being performance heavy
+	~ player personal light can be toggled with "L"
++ added alien serpent enemy into the game, original sprites courtesy of Redfrog
++ added several new vore sfx, several courteously provided by The Tum of Rayne
++ wrote new render checker scripts
++ reworked and overhauled detection/perception system
++ reworked and optimized melee attack system
+~ increased gravity, increased move speed, increased jump velocity and tweaked momentum multipliers to improve game feel
+~ increased camera tracking speed
++ rewrote and optimized enemy code to a state machine as the player now uses
++ enemies now have a searching state
++ added a "sonar ping" effect to let players know when/where an enemy has heard them (can be disabled in settings)
++ Created navigation scripts and added advanced pathfinding to enemy AI
++ added a blocking state to sentries
++ added a charge up period to dasher's ground attacks
+~ Dasher air attacks will now be a weaker, shorter, faster slash
++ added a reload cycle to missle mechs
+~ missile mechs now use the same detection system as the rest of the enemies, rather than raw proximity
++ optimized so many scripts
+~ rewrote and optimized collision system to account for engine update and inclusive coordinate system with floats
++ added more collision code to handle sloped terrain in the future
+- Blind drake has been temporairly removed to prevent crashes as it needs its own resprite and overhaul to its code and behavior to act more like a mini boss
+
+Minor changes:
++ added new passive digestion sounds based on indigestion level
++ indigestion level now affects Mia's sound emission
+~ Reduced darkness of lighting systems
+~ Augment mass now deals extra damage based on how many prey Mia is carrying
+- removed knockup from Sentry and Dasher attacks
+~ resynchronized several sound fx
+~ slightly narrowed the serpent's hitbox
+~ adjusted dashers to now require 3 shots to stun
++ added a toggle for screenshake in settings
++ cleaned up sentry and dasher sprites/animations and added a few new ones
+~ increased noise emitted by shooting by ~40%
+~ Re-opened a hidden vent in level 2 that was accidentally blocked off
+~ reduced invincibility frames after taking a hit to 60 (was 100)
+~ reduced fullness melee damage multiplier to 15% per prey (was 20% per prey)
+~ reduced time upgrade machine takes to complete by 50%
+~ regurgitated enemies will now be set to the knockback state
+~ slightly lowered height of player punch hitbox
+~ updated readme with debugger functions and other relevant information
+
+Bug fixes:
+~ fixed countless issues with collisions
+~ fixed a bug that caused a crash when attempting to swallow projectiles with no stamina remaining
+~ fixed an issue where manual digest with 3 prey did not loop correctly while prey was still active
+~ fixed a slight error with swallowing projectiles that didn't account for stamina cost
+~ fixed a rare error that would cause the player to die when transitioning levels
+~ fixed a positioning error with full3 indigestion
+~ fixed an issue where the wrong regurgitate animation was used after struggle contests
+~ fixed numerous animation inconsistencies relating to full3
+~ fixed an issue that allowed clipping through walls with full3 crouching
+~ fixed an issue where forcecrawl would trigger in areas with low ceilings while carrying 3 prey
+~ fixed an issue where the sentries couldn't hit the player while they were crawling
+~ fixed issues where the new knockback poses weren't displaying properly
+~ fixed a bug where a few frames of manual digest would be skipped while digesting the serpent
+~ added a crash preventative for in case the players escaped map boundaries and left the game running
+~ fixed a rare frame perfect bug that could cause the player to be both eaten and not at the same time
+~ fixed an issue that causes a looping sound bug when enemies got hit by a shot after KOing the player
+~ fixed a bug that allowed the player to be shot by missile mech missiles while eaten
+~ fixed a slight issue where the regurgitate anim would play without regurgitating a prey when there was no room to regurgitate a prey, such as when against a wall
+~ fixed a bug that kept prey that was currently being swallowed from being regurgitated upon taking a hit
+~ fixed a bug where melee with 3 prey at with high dexterity levels could allow infinite speed buildup
+~ fixed an issue where enemies would jump continiously when against a wall they couldn't get over
+~ fixed an issue where acid drips would render over the gene editor menu
+~ fixed an issue where the player could duplicate when being eaten by the drake while eating another enemy
+~ fixed an issue where drain vitality could be exploited for infinite health during struggle contests
+
+v0.7.1
+~ fixed an issue where survival experience wasn't being saved
+~ fixed a bug where enhanced acids used the wrong DNA cost
+~ fixed a minor bug that caused the toss n swallow animation to loop incorrectly 
+~ fixed a set of engine bugs regarding an update to how the instance_destroy() function executes
+~ fixed graphical error with screen transitions
+~ tweaked/slightly optimized wall colliders in both levels 
+~ slightly revised bits of each level towards the boundary of the screen so the UI wouldn't cover as much
+~ game window will no longer automatically resize when changing levels
+
+
+v0.7.0
+~ SAVE SYSTEM HAS BEEN HEAVILY UPDATED. OLD SAVES WILL LIKELY NOT WORK.
++ added genetic editor for accessing and upgrading skills/perks and related UI
++ added 20 new perks
+	+ augment strength
+	+ augment dexterity
+	+ augment mass
+	+ power strike
+	+ extra padding
+	+ iron stomach
+	+ drain vitality
+	+ energy leech
+	+ enhanced acids
+	+ wrecking ball
+	+ advanced enzymes 
+	+ gaseous eruption
+	+ silence
+	+ augment speed
+	+ swift step
+	+ augment vitals
+	+ survival experience
+	+ augment stamina
+	+ endurance
+	+ eagle eyes
+	
++ added Genetic material/DNA points (experience points) and related UI
++ added interpolation to health and stamina bars to better show loss and gain of stamina/hp
+~ updated health and stamina UI and added animations
+~ tweaked UI positioning
++ added many new sfx
++ added many more new burp sfx
+~ Moved dash ability (now known as swift step) to the perk trees
+~ moved melee charging to perk (Power Strike)
++ added screenshake fx
++ added new debugger functionality 
+	while enabled:
+	"P" to add 50 DNA, 
+	"9" to trigger struggle contest (requires active prey)
+	"I" to trigger indigestion 
+	numpad "+" to add 10 HP
+	numpad "." to add 10 max HP
+	numpad "8" to add 20 to indigestion meter
+	
+~ updated debugger variables
++ added watermark/version number
+~ corrected a long standing error that caused games to save twice when using f8 and possibly causing errors
+~ fixed a bug that looped the regurgitate animation if performed immediately after swallowing an enemy
+~ updated readme (check for info on gene editors)
+
+
+v0.6.1
+- swallowing now "finishes" a few frames earlier such that taking a hit/having a struggle contest while completing swallowing won't force regurgitation if you're far enough along
+- prey will not be regurgitated when taking a hit during indigestion unless the indigestion bar is full/burping from indigestion
+- tweaked variables shown in debugger
+- fixed a bug that caused a softlock with struggle contests
+- fixed another softlock with the drake resulting from it getting stunned at the same time the player is eaten
+- fixed a crash error due to nonexistant variables
+- fixed a crash relating to being digested by the blind drake
+- fixed acid drip effect occuring after player had been digested
+- fixed a bug that could cause duplicated player states from eatting a mech pilot while being eaten by the drake
+- fixed (most) scenarios where dashing into a wall would briefly render the player invisible until moving again
+
+v0.6.0
+- increased Mia's max capacity to 3
+- rebuilt player code (for the last time, probably) to function with state machine for improved stability, optimization, modularity, moddability, and better organizational and debugging purposes
+- updated main menu music
+- added debugger toggle (F3)
+- added bats for spooky month ("B" to disable)
+- added jump sound effects
+- reduced sound emmission of shooting by ~20%
+- taking a hit while still swallowing an enemy no longer causes them to be immediately regurgitated if they're far enough down
+- taking a hit during regular indigestion does not cause an enemy to be regurgitated if indigestion was almost finished
+- regurgitating enemies now slightly reduces indigestion
+- smoothed zooming and added sound effects
+- crouching/crawling is now a toggle rather than requiring the crouch key to be continiously held
+- dropping down through a platform is now performed by pressing down while already crouched on a platform, rather than down + Z
+- dashing off an edge no longer prevents you from using an ariel dash afterwords
+- updated a bit of level 1's tilemap
+- slightly reduced max velocity of bones when using manual digest
+- increased bones friction with the ground so they don't slide like they're on ice
+- corrected a long standing bug with momentum that caused sliding/braking to be completely discounted in momentum calculation (i.e. trying to reverse movement would only happen as fast as you would normally slow to a stop)
+- added power down sound to laser grid systems
+- added warning line for when minor indigestion triggers on the indigestion meter
+- tweaked a few tiles in level 1 and adjusted blue laser grid control pannel location so it wouldn't be blocked by the UI
+- fixed minor sprite issue with afterimage when dashing
+- fixed minor animation bugs in edge cases of some of the regurgitation animations
+- reenabled visibility on wall cannons (I'm dumb)
+- fixed issue where digestion sounds wouldn't play for blind drake
+- fixed several issues regarding the blind drake being struck by missiles while eating/digesting/regurgitating the player
+- fixed minor issue where acid drip effect would not cease if the player was immediately eaten again
+- fixed a minor bug where stamina would continue to be drained by holding sprint while in motion but not actually using movement keys
+- small note that the status icon isn't fully working yet due to needing a major structure update to better align with the new player code
+
+
+v0.5.2
+- fixed a bug and added a preventative for a few rare case scenarios where the sound bar would glitch to have infinite range usually as a result of crouching while full
+- fixed an error that caused the game to freeze from an infinite loop upon completing the second level or getting a gameover
+- fixed a minor error that caused the crouch slosh animation to not play
+- updated project version number to match actual version number
+
+v0.5.1
+- improved leveltransition script and enabled moving back and forth between levels
+	- Dev note: right now any time you return to a level, the level is reset - this is to allow for enemies to respawn until a more thorough respawn system is developed
+- added a couple more tweaks and hidden vents to level 1 for alternate pathing
+- reduced health gained from eating minimech pilots by half and doubled stamina gained
+- manual burping is now cancellable
+- using the shoot or attack buttons will now also cancel cancellable animations
+- adjusted manual burping and indigestion burping to reduce indigestion over time for the duration of the burp 
+	- Dev note: in addition to balancing burping "cost" by making the shorter burps use less indigestion, this also allows canceled burps to only have had a partial cost
+- removed minimum indigestion required to burp manually - now as long as indigestion is above 0, manual burping can be used
+- improved player projectile code and fixed some collision errors 
+- save notification text will now scale with the rest of the UI and is properly centered
+- sound level will now more smoothly interporlate differences in sound levels
+- increased maximum possible sound generated to 600 (up from 550)
+- slightly increased sound generated by indigestion, struggle contests, sprinting, and manual burping
+	- Dev note: this should help compensate for how sound interporlation works as well as the new default view size while also creating a more realistic relation between different sounds and their loudness
+- fixed a bug that caused sound level to instantly jump to a higher value if shooting while moving
+- fixed a bug that caused a softlock by using manual burp during manual digestion
+- tweaked the layer of some tiles on level 2 for consistency
+- updated readme
+
+v0.5.0
+Major changes:
+- changed sound to be locationally based
+	- Due to an IDE/Engine bug right now the sound will not fade out with distance - this will be fixed as soon as the bug in the engine itself has been fixed by the developers of the engine
+- added edible MiniMech (formerly known as robot enemies/the missile robot) pilots 
+- destroyed minimechs will drop their pilots, which will try to run from the player and restore health and stamina if eaten
+- health pickups now must be manually used and will not automatically pick up when touched
+	- added a toss n swallow animation to reflect this
+- indigestion gain now scales with total ACTIVE prey count rather than raw prey count
+- updated default game resolution to 1920x1080 (this can be adjusted via pause menu)
+- added a pause menu (Esc) for pausing, saving/loading, returning to title, quitting, adjusting preferences, and adjusting resolutions
+	- Removed restarting with R and closing game with Esc (Esc will still close the game on the main menu)
+	- Removed Bone generation with B and music toggling with M/N as options for each have been moved to the pause menu
+	- F1 will still work as a hotkey for fullscreening any time as will f8 for saving
+- Reworked method and transition for loading games to be much more reliable and ensure the level is loaded before the save data offscreen
+- added chargable melee attacks - hold down the attack key at the start of any melee attack to charge at the cost of stamina
+	- the longer attacks are charged, the more stamina they cost and the more damage/knockback they deal
+- second and third melee attacks can now be initiated sooner
+	- Dev note: maintaining a melee combo felt a little too difficult as the window to press attack again required too precise timing
+	- This also makes it easier to quickly follow up with the swing attack to help stack more damage since the swing is the weakest of the 3 attacks
+	- Time your presses of the attack button for the fastest possible combo - mashing the button doesn't tend to work as fast unless you're a very fast masher
+- added ability to manually burp (F) and new burping sfx - reduces indigestion meter but creates noise
+- reworked the stealth system's sound emission - sound is no longer emitted in box shaped areas around the player but a more realistic circle instead
+	- sound emission radius is determined by several of the same factors as before as well as several new ones, such as any time the player burps or lands on the ground if they are not holding crouch
+	- most actions that emit sound will smoothly increase the sound emission radius rather than everything instantly changing its size (with a few select exceptions such as when firing the gun)
+	- excess sound from moving is no longer emitted while airborn (performing other actions that emit sound will still emit as normal, i.e. shooting, attacking, etc)
+	- Dev note: overall the sound emission rework should make stealth a much more reliable and viable approach to dealing with most enemies, provided you still avoid line of sight
+- added status icon and rearranged UI
+	- status icon will track your current preycount, digestion progress (how long till all prey have 0 health), and play various animations for indigestion, struggle contests, and trying to eat enemies while you're already full
+- tweaked much of the UI and created custom font
+- reworked and repositioned sound bar UI element to match the rest of the UI and accurately reflect sound emission radius
+	- Dev note: This has made the left side of the screen very UI heavy while the right is bare - in the future, things like currency, inventory hotbar, and alarm level will populate the right of the screen, though there will be options for different layouts
+- completely rewrote player collision using data structures - this SHOULD fix most known and possible collision bugs involving the player and
+	especially jumpthru platforms, but keep an eye out for bugs as this code will eventually need to be used by enemies as well
+- reduced dash cost by ~18%
+- reduced dash duration by ~40%
+- dash cost now scales with belly size
+- finishing a dash now returns you to your top sprint speed ONLY if you have an empty stomach - the larger your belly, the further the dash momentum will carry you
+	- Dev note: the much shorter dash distance coupled with the lower cost while empty made it much more viable to be used as a dodge in combat 
+	and to get behind enemies quickly since it no longer sends the player flying too far away, giving more agility to Mia while her stomach is empty
+	while also giving her much greater mobility (albiet in a single direction) while full at a much greater stamina cost
+- tweaked how dashing was triggered so it should be more reliable and not trigger just as a result of strafing too quickly
+- using manual digest while carrying active prey further boosts stamina regen for the duration
+
+Minor changes:
+- slightly improved numerous sprites to be more consistent
+- replaced gun sprite
+- added an extra frame to airborn poses for different fall speeds
+- current prey count and maximum prey capacity is now displayed above the status icon
+- updated projectile physics
+- updated shooting sound
+- updated mech missile sprites
+- added slight variations of landing sound for varying fullnesses and for the mech pilots
+- updated UI scale for 1920x1080 resolution
+- reduced stamina, indigestion, and sound bar sizes to better accomadate the upscaling at larger resolutions
+- raised threshold for minor indigestion to 75 (up from 65)
+- added brief aftereffect when stun gun shot hits a solid wall that is still capable of hitting enemies
+	- Dev note: stun gun shots get immediately destroyed when fired close to point blank at a wall, making enemies that were cornered between the player and the wall effecively immune to being shot - this solves that problem and adds a more realistic effect to the gun
+- missile mechs now immediately abort firing when player has left thier full proximity range but will immediately resume patrol in the player's direciton
+- slightly adjusted spawn location of missiles fired by missile mech
+- added player shots and missiles to the save script (THIS MAY CAUSE ISSUES LOADING OLD SAVES - DO SO AT YOUR OWN RISK)
+- adjusted save script to account for more details about indigestion so loading a game with high indigestion doesn't immediately trigger indigestion
+- resprited and resized mech missiles
+- player is now more properly placed and spat a short distance when regurgitated if there are no walls in the way
+- sped up loading transition 
+- hitting a horizontal laser barrier will no longer try to move the player to their last safe coordinates if they are already back on solid ground
+- fixed a couple potential bugs and exploits involving horizontal barriers
+- added crash preventative for trying to save the game on the main menu
+- slightly updated beta room layout
+- slightly reduced distance bones will roll
+- bones will not be launched as far when using auto digest and much further if using manual digest
+- bones will now alert enemies that they collide with
+- added a jump buffer - for a brief moment (8 frames) after walking off an edge you will still have both jumps to use - should help with attempting sprinting/long jumps so the player doesn't immediately use their air jump if their timing was a few frames off
+- improved stamina bar red flash effect for attempting actions without enough stamina remaining and fixed improper scaling issues it had prior
+- tweaked acid drip effect to be more consistent
+- tweaked health vial toss
+- crouch slosh sfx will now play when falling directly into a crouch 
+- modifed more areas of level 1
+- added unique surprised sfx for minimech pilots
+- updated values displayed in beta room
+- enemy health values now tied to enemies in beta room and now display max health as well
+- updated controls menu
+- updated readme
+
+Bug fixes:
+- pausing is now prevented while game is loading to prevent breaking things
+- fixed a minor bug that allowed the player to change the direction they were facing after being KO'd 
+- fixed a crash that happened after a gameover while full
+- UI will now stay where it's supposed to be while in fullscreen
+- fixed the blind drake's exhaustion phase getting its timer reset if it was stunned during the phase
+- fixed wrong regurgitate animation being used if prey succeeded in a struggle contest
+- fixed a minor graphical bug from turning mid air while tossing and object/mini pilot
+- fixed a bug where the swallowing projectile animation would loop if swallowing a projectile immediately after finishing eating an enemy
+- fixed a bug that would let the player repeat attack animations by pressing crouch while full
+- fixed a minor bug that would cause the drake to not know what to do if the player was already eaten
+- fixed a minor animation loop bug when a struggle contest was triggered while eating a mech pilot
+- added preventative to keep bones from rapidly colliding with enemies 
+- fixed inconsistency in fire rate that made the player fire slower while not carying prey
+- fixed a small bug with the action button prompt
+
+
+v0.4.5
+- removed auto digest period - absorbtion can be activated as soon as all prey health has hit 0
+- quick digest shall henceforth be known solely as manual digest (as it is no longer technically the faster option)
+- sped up manual digest animations by ~10%
+- added half fullness/post digestion belly size - at this size you will (currently) gain no buff/debuffs due to fullness and will still have room for 2 more prey
+- manual digest will also cause bones (and eventually items) to be burped up akin to auto digest
+- tweaked manual digest animations
+- manual digest animations will now lock the player in after the smack
+- slightly sped up shooting animations to be more consistent
+- added jump through platforms 
+	- press down and Z (attack/action) to drop through a platform
+	- player and enemy projectiles will pass through platforms
+	- the code for these is surprisingly complex - let me know of any bugs you find!
+- replaced main tiles (huge thanks to Anko Bear!!)
+- updated motion door sprites
+- added several new detail tiles
+- replaced health pickup sprite (thanks JumpingBananaBoat!)
+- updated ammo pickup sprite
+- updated missile robot sprites (thanks again JumpingBananaBoat!!)
+- modified several small areas of level 1, including (but not limited to)
+	- increased security at violet laser barrier control
+	- increased security and modified floor layout of provisions stockpile
+- reduced sprint stamina consumption by ~40%
+- reduced dash stamina cost from 75 to 60
+- reduced stamina regeneration by 50%
+- stamina regenerates ~15% faster per active prey at all times except when eating and during struggle contests
+- struggle contests will drain stamina at a rate scaling with how close they are to escaping
+- running out of stamina during a struggle contest will cause the prey to succeed in the contest, but prey no longer succeeds from simply filling the struggle bar
+- struggle contest mash difficulty reduced by 25%
+- auto digest can now be used while eaten
+- manual digest will now be able to digest any prey with 0 health even while other prey is still struggling
+- updated digestion priority - earliest swallowed prey in stomach with 0 health will digest first
+- updated enemy AI to better pursue the player if they're currently on a platform or below the player
+- increased 0 prey projectile swallow speed by 50%
+- increased half size projectile swallow speed by 33%
+- increased 1 prey projectile swallow speed by 17%
+- auto digest can now be used while airborn akin to manual digest
+- engine will now attempt to place the player further from the edge if they walk off into a horizontal laser barrier
+- speed is now set to 0 after being replaced on the ground hitting a horizontal barrier to prevent the player from easily falling in again
+- the eat key now functions like shooting where you don't have to be moving in the direction you're facing while holding the key
+- post digestion burps reduce indigestion by varying amounts
+- reduced health pickup to only heal 15 (down from 25)
+- reduced ammo pickup to 15 (down from 20)
+- adjusted how knockback from missiles is handled to give player immediate control duing knockback (same as taking melee hits)
+- slightly reduced stun time for sentry and dasher upon hitting a laser barrier
+- slightly increased sentry jump height
+- reworked and optimized how laser barriers worked to properly auto generate a path from source blocks
+- added two missing animations for regurgitating an enemy while still holding digested remains
+- updated collision code framework to potentially allow for smooth inclines in the future (let me know if something is breaking the game physics in the meantime)
+- health bank and regeneration values will now be saved by save script
+- bonus health (non regen) gained from using auto/full digest is now multiplied by number of enemies digested at once
+- tweaked health regen to only ever activate upon FULLY completing either method of digestion (i.e. regeneration will not start until belly is flat)
+- adjusted stun time for sentry on hitting a large missile or bone to match the stun time of hitting a laser barrier
+- tweaked player, sentry, dasher, and drake collision masks to be more consistent and cause fewer collision issues
+- dashers will face the player upon being alerted akin to sentries
+- updated crawl code to prevent getting stuck in walls when exiting crawl spaces to an open fall or while taking a hit in a crawl space
+- created a script for checking player states
+- player should no longer be forced to regurgitate a prey if in the process of eating a projectile when getting hit by a missile or a struggle contest starts
+- fixed a MADDENING collision bug that could trap the player in the ceiling if they jumped while crouching in a low ceiling room
+- fixed a animaion softlock bug related to the above
+- fixed a slight issue where the player could dash backwards
+- entities should now always play the "landing" sfx when hitting the ground or a platform
+- fixed a slight error with the collision mask of the player when crouching
+- fixed a bug where the sentry could get stunlocked if she was punched after recently hitting a laser barrier
+- fixed a bug where sentries wouldn't attempt to jump over an obstacle to pursue the player if they were already pressed against it
+- fixed a small bug where the dasher could get stuck in the surprised pose while stunned
+- fixed a bad sprite assignment for the sentry
+- fixed dashers being able to be eaten mid-dash
+- fixed crawl animation looping with half sized belly while not moving
+- fixed a slight issue with player collision while crouching on an edge
+- fixed a bug where buttons would appear to not be pressed after loading a game where they had been pressed
+- fixed missing missile swallow anim
+- fixed an animation softlock from using auto digest with 2 prey and an audio bug from the same animation
+- fixed an EVEN MORE BIZARRE bug that executed code simiultaneously in rare scenarios that caused crashes on load
+- updated readme
+
+v0.4.1
+- health is no longer gained instantly on digestion - instead whenever digestion damage is delt to enemies,
+	it is stored until either auto digest is activated or quick digest is completely finished, at which point
+	the stored health is spent in its entirty regenerating player health
+	- enemies at 0 hp will still be worth a small amount of instant healing upon completing digestion of each - 
+	auto digest will still gain more healing from enemies this way though
+	- (prior to any upgrades) total enemy health delt in digestion damage will be worth about half that to the 
+	player in healing
+- quick digest will now also add bones to the bone count for regurgitation (if bones are enabled)
+- being struck by missiles during a struggle contest will cause prey to be regurgitated similarly to being hit mid contest
+- changed how prey are carried between levels to a much simpler and bug-free method
+- struggle contest progress bars should now be sure to always appear on top of all tiles
+- added an extra section to beta room for testing wall cannons
+- fixed melee attacks not working while out of ammo (im dumb)
+- fixed an extremely bizarre bug that would cause an unknown variable crash
+- fixed a bug that could softlock the blind drake upon taking a hit while attacking
+- fixed a bug that could cause the drake to softlock the player upon eating it without it actually becoming full
+- fixed an extra audio cue playing if you completed quick digest during auto digest
+- updated readme
+
+v0.4.0
+- added struggle contests - enemies will now initiate contests with you every so often to attempt to escape
+	- attempt frequency and warning time before contest begins scales with remaining prey health
+	- mashing space bar will win struggle contests, the difficulty of which also scales with remaining prey hp
+	- failing to out mash the prey will result in one prey escaping
+	- taking a hit during a struggle contest while the prey is closer than 25% to escaping will also cause them to be regurgitated
+- added indigestion meter to replace random indigestion events
+	- shorter indigestion triggers at 65% full, longer indigestion burp triggers at 100% and reduces indigestion meter by 50
+	- struggling enemies and sprinting while enemies are struggling increases indigestion meter, as do struggle contests
+	- indigestion meter slowly decreases while not carrying active prey or sprinting, or while carrying no prey at all
+	- crouching and not moving lowers the rate at which indigestion is gained
+- added melee attacks ("Z" to use)
+- added enemy health and ko states
+- struggle animations now accurately reflect remaining prey health
+- end of auto digest now must be manually retriggered to finish (watch for visual/audio cue)
+- reduced auto digest time by ~18% per prey eaten
+- auto digestion is now incremental - player can now eat enemies during auto digestion as long as they have the capacity
+- added partial digestion animation to reflect incremental digestion
+- added animations for attempting to start auto digest while prey still has health left
+- quick digest cannot complete digestion if prey has health left, instead extra digestion damage is dealt while held
+- quick digest will digest prey incrementally like auto digest now as well
+- reduced cost of eating projectiles by ~80%
+- eating projectiles adds a small amount to indigestion meter
+- updated stamina bar sprite
+- stamina bar now remains a constant size and shows current stamina value
+- increased stamina cost to eat enemies by ~40%
+- stunned enemies cost 25% less stamina to swallow
+- eating completely unaware enemies reduces stamina cost by 50%
+- stamina cost to eat enemies now scales with their remaining health
+- reduced stamina cost of sprinting ~20%
+- reduced stamina regain while digesting 2 prey by ~25%
+- running fully out of stamina while digesting prey will cause regular delay before regaining stamina
+- boosted stamina regen kicks in as soon as move and ability keys stop being used rather than when speed is 0
+- created new bone sprites
+- added sfx for bone colliding with enemies
+- modified number of bones generated on auto digest
+- bone generation is now togglable with "B" (on by default - this will be added to a settings/preferences menu later)
+- added ability to manually regurgitate enemies (D)
+- created script for regurgitating enemies
+- added regurgitate sound effect
+- new visual effect for recently regurgitated entities
+- regurgitated enemies are now spat a short distance away
+- created scripts for indigestion and optimized several features 
+- modified how preycounts are handled to help future proof against bugs
+- ko'd enemies now have proper collision mask
+- created several other misc scripts for optimization
+- improved jump sprites
+- minorly tweaked quick digest animations
+- player damage dealt and knockback dealt now scales with fullness
+- sentry now stops just a bit shorter of the player so they're less prone to feeding themselves to Mia
+- selecting continue without an existing save file no longer starts a new game and keeps the player on main menu
+- removed an extra frame from the start of the swallow animations
+- minorly tweaked explosion fx speed
+- removed "hanging" laser barriers from level 1
+- missile robot now has momentum and can take melee hits (though it is immune to melee damage)
+- optimized robot code 
+- optimized drake to now use collision boxes as opposed to masks
+- reduced duration of and resized drake attack box
+- Drake windup can not be inturrupted by first 2 melee attacks - stuns are also no longer inturrupted by the same attacks
+- added crash preventative for recent changes
+- blind drake SHOULD no longer get stuck in laser barriers
+- modified knockback on blind drake
+- reduced volume of striking a laser barrier
+- shooting now behaves as it does while airborn - turning and shooting is possible on the ground without reversing direction
+- optimized sentries and dashers to now use collision boxes rather than masks for attacks
+- adjusted sentry attack (reduced distance needed for windup, attack now gives a small burst of movement)
+- sentries are now sure to face the player before winding up
+- tweaked melee knockback
+- beta room shows attack boxes
+- sentry and dasher now have momentum 
+- optimized how recieving knockback is handled 
+- adjusted collision box for wall missiles to compensate for player collision size adjustment
+- dashers now resume patrol in the same direction they were chasing the player if they lose sight of the player
+- only beta room will show developer tools such as variables and hitboxes onscreen now
+- fixed stun time for dasher
+- fixed a soft lock that could ocurr by finishing digestion at the same time a missile was eaten
+- fixed a bug that would cause an extra enemy to be regurgitated sometimes
+- fixed a bug that caused a soft lock from immediately attempting to eat a regurgitated enemy
+- fixed a bug that caused enemies behind you to be eaten if they were closer than the ones in front of you
+- SUPER LAME IDE BUG NO LONGER EXISTS YAY
+- fixed another bug that caused enemies to rapidly play the landing sound while in the airborn pose next to a wall
+- fixed a bug that caused regurgitated enemies to not be spat out in the correct location
+- fixed a minor graphical bug with stamina while eating ko'd enemies
+- fixed a bug that caused a crash upon getting a gameover
+- fixed a bug that allowed auto digest to instantly digest swallowed enemies
+- fixed a bug that caused boosted stamina regen from digestion to never stop
+- fixed misc regurgitation bugs that caused softlocks or failed to reduce fullness
+- fixed a bug that caused regurgitation animation to loop 
+- fixed several misc bugs and optimization issues
+- fixed a bug that could cause indigestion to happen during auto digest
+- fixed a bug that caused sprite issues with enemies when they jumped next to a wall
+- fixed a bug that could cause enemies to forget how to attack
+- fixed a bug where enemies wouldn't be regurgitated if eating them while eaten by the drake
+- fixed a bug where player would get stuck in laser barriers
+- fixed a bug where dashers would not turn around at walls
+- fixed bad sprite assignments with the sentry
+- fixed a bug that caused a crash after being digested by the drake
+- fixed a small bug that prevented actions costing stamina to execute if the player only had exactly enough stamina left
+- fixed a small bug that caused the digest start animation to play slower than normal
+- updated readme
+
+v0.3.6.1
+- fixed a SUPER LAME IDE BUG that makes it so I CAN'T USE ANIMATIONS 9 FRAMES LONG animated at 10 FRAMES 
+	PER SECOND like the AUTO DIGEST START ANIMATION or else it will SOFTLOCK THE GAME
+- also the auto digest start animations are now cancellable
+
+v0.3.6
+- player hitbox for eating enemies is now a proper hitbox rather than relying on the player collision 
+- player can now turn around mid-air without needing to reverse the direction they're moving
+- fixed a bug that deleted enemies if you took a hit at the same time as eating an enemy
+- fixed a bug that caused a crash after being regurgitated by the blind drake
+- fixed a bug that replayed swallow animation by pressing down
+- fixed a bug that allowed skipping half of the quick digest animation
+- fixed a bug that caused run sprite to display while holding quick digest while empty
+- fixed a bug that caused knockback sprite to continue to be displayed after taking a hit while eating
+
+v0.3.5
+- Added momentum to player movement
+- Added braking/sliding sprites
+- Swallow animations can now be exited early by inputting movement towards the end of the animation
+- Tweaked jump/fall animations to have a little more detail
+- increased top speed while carrying 1 and 2 prey (.8/.6 top speed to .9/.8 top speed, respectively)
+- reduced accelleration/deceleration while full as trade off
+- Changed control scheme - check readme or menu for new layout (supports old control scheme except WASD)
+- removed start lag upon shooting, added end lag
+- adjusted animation speed to match player speed when running/crawling
+- added missing knockback sprite for sentry
+- modified how prey are handled when eaten in code to be more efficient and modular
+- added beta room
+- fixed a bug that caused a soft lock while finishing digestion and attempting to eat projectiles
+- fixed a minor bug where the wrong airborn animation displayed for a frame before hitting the ground
+- fixed a few other bugs where the wrong sprite displayed for a single frame
+- fixed a minor bug where dash direction wouldn't match the double tapped key
+- fixed an inconsistent sound effect
+
+v0.3.3
+- fixed my own stupidity (temporarily) and actually added the missing stamina code :)
+- tweaked player collision masks to be more uniform and fix a collision bug
+
+v0.3.2
+- stamina bar will now flash red when attempting an action that costs more stamina than is remaining
+- optimized player code and collision checks
+- tweaked animations for full1 and 2 projectile swallowing to more closely match empty state
+- fixed a bug that allowed manual digestion to continue while being eaten
+- fixed a small bug that allowed manual digest to be used during indigestion
+- fixed a bug that allowed the player to get higher than max ammo 
+- fixed a rare bug that caused dashers to disappear upon being eaten
+
+v0.3.1
+- fixed couple minor bugs for indigestion audio
+
+v0.3.0
+- Replaced/revamped player sprites
+- New title screen
+- Revamped menu music
+- Tweaked vore audio to match new animations
+- fixed bug that caused a soft lock if the player attempted to activate auto digestion while auto digest finished
+- fixed bug that caused crash while digesting enemies and getting a gameover
+- fixed bug that caused prey to not be regurgitated properly after loading a saved game while full
+- fixed bug that caused crash on eating dasher while they were dashing
+- fixed bug that caused crash while on the TBC screen
+
+v0.2.2
+
+- Player can now use stamina to crawl faster
+- Slightly increased dash distance
+- action key is now hidden after pressing button
+- added preventative for potential crash bug when eating dasher while it is dashing
+- fixed bug that caused question mark to not appear in the right position when multiple enemies of the same
+	type existed
+- fixed a bug that caused wrong collision mask to be used while crouch shooting
+- fixed a bug where player could loop indigestion animations by triggering manual digestion
+- fixed area in level 2 where it was impossible to dodge wall cannons
+- infinite struggle loop bug with blind drake has been partially fixed - don't hold more than 2 keys at once
+	when struggling!
+
+
+v0.2.1
+
+- Fixed digestion damage of Alien drake
+- Removed manual trigger of indigestion (used for testing purposes)
+
+v0.2.0
+
+- Added new crew enemy
+- Added new alien enemy
+- Added new dash powerup
+- Added wall cannons
+- Crawl spaces exist now that they won't get you stuck in walls!
+- Eating enemies now costs stamina
+- Eating projectiles also costs stamina, but replenishes ammo
+- reduced hitbox size of sentry enemy attack
+- Added zoom function ("O" to activate)
+- Enemies now base initial detection off of line of sight, and pursue based on proximity
+- Enemies can be alerted of you if they hear you - be mindful of the sound meter!
+- New JSON based save system
+- Question marks now stay properly tied to the enemy that generates them
+- Increased range at which you can grab enemies to eat
+- eat key can now be held prior to colliding with enemies to eat them
+- indigestion now will not happen chained extremely close together, but should otherwise still happen at about
+	the same frequency
+- Added alternate sprint key (C) for those who's keyboards have issues with using alt to sprint
+- Updated vore system to be able to handle different types of prey
+- Player can now shoot ~20% faster while on the ground
+- Increased player sprint speed while not full
+- Being fuller also reduces knockback range and duration
+- slightly increased enemy 1 stun time
+- Digesting/quick digesting 2 enemies at once heals slightly more now
+- Manual/quick digest can be done during auto digestion now (if you couldn't already)
+- Updated readme
+- fixed bug that caused crash on gameover
+- fixed bug that caused enemies to vanish when they detected you too close
+- fixed bug that caused crash when regurgitating the last enemy of a type in a level
+- fixed issue where enemies could get stuck in walls
+- fixed bug that caused regurgitated enemies to get stuck in nearby platforms
+- fixed bug that caused regurgitation animation to not always play properly
+- fixed bugs that caused regurgitation to duplicate or delete enemies
+- fixed regurgitation bug for REAL this time
+- fixed collisions to properly get player/enemies out of walls should they get stuck
