@@ -1,1 +1,0 @@
-# project-glutt-mobile
